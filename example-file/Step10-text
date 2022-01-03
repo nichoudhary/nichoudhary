@@ -1,0 +1,28 @@
+//### Section - 5 | Step 10: Spring Web Services Configuration - Generating WSDL
+
+One of the thing is Spring Web Services uses contract first approach. So, we have to define an XML, an XSD and then define
+the configuration for Spring Web Services. In this step we will try to expose the WSDL. Spring Web Services actually
+created a WSDL for us, we will not have to create it manually. We will name it as /ws/courses.wsdl and this web service
+definition is based on the schema which we've already created (course-details.xsd). So, we'll configure web services to use
+this schema and generate these WSDL for us.
+
+While configuring WSDL, we need to configure a lot of other things.
+1. Port Type - something like an interface (CoursePort)
+2. Namespace - This we already have it.
+3. XSD (course-details.xsd) based on which wsdl will be created.
+
+We'll start with defining a schema, the way we'd define a schema is by defining another bean of XSDSchema and create a
+method coursesSchema(). After defining the schema, we need to use the schema in our WSDL definition. For this also, we
+will create a bean and for defining wsdl, we use DefaultWsdl11Definition
+
+That's all the configuration we need to run the Web Service finally!!
+We started with:-
+1. XML
+2. XSD
+3. Endpoint
+4. Configuration (ServletRegistrationBean, Exposed WSDL definition based on our schema)
+5. Run our web service
+
+Spring web services make use of a specific implementation of the WSDL. So, we should add the JAR as a dependency.
+Now run the application as a JAVA application.
+
