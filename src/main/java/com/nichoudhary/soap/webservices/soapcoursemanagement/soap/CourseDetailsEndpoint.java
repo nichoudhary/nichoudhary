@@ -40,6 +40,16 @@ public class CourseDetailsEndpoint {
         return mapAllCourseDetails(courses);
     }
 
+    @PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "DeleteCourseDetailsRequest")
+    @ResponsePayload
+    public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
+
+        int status = service.deleteById(request.getId());
+        DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
+        response.setStatus(status);
+        return response;
+    }
+
     private GetAllCourseDetailsResponse mapAllCourseDetails(List<Course> courses) {
         GetAllCourseDetailsResponse response = new GetAllCourseDetailsResponse();
         for(Course course: courses) {
