@@ -1,0 +1,9 @@
+//### Section - 5 | Step 13: Implementing SOAP Web Service for GetAllCourseDetailsRequest
+
+In this, we'll create a service called GetAllCourseDetails
+First define the structure in the xsd, then create the method in the Endpoint class.
+
+
+
+
+
