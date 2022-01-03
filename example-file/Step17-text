@@ -1,0 +1,24 @@
+//### Section - 5 | Step 17: Exception Handling and SOAP Fault Responses
+
+When there is an error, we need to send something called a fault response. A SOAP envelope defines a header and a body. Until
+now we sent a proper request/response as part of our body. The other thing which can be present in the body is also a fault
+response. When do you send a fault response? When there is an exception that happens.
+
+For eg, in the operation GetCourseDetailById, if we enter an invalid Id, we will get a Null Pointer Exception. We can notice
+that whenever there is this exception that happens, there is a proper response already coming back. It's not going to a 404
+page or I'm not sending an empty response or something of that kind. What is happening here is a proper envelope with a header
+and the body and the fault is getting created and an error response is being sent back. So, there is proper exception handling
+which is already defined which returns a fault code and the fault string.
+
+What we can do is, instead of using Runtime Exception we can create a course not found exception.
+To specify it it's actually a client's fault or server fault, we can use - @SoapFault(faultCode = FaultCode.CLIENT) annotation.
+We can also define custom SoapFault using - @SoapFault(FaultCode = FaultCode.CUSTOM, customFaultCode="{namespace}custom-fault-name")
+for eg - @SoapFault(FaultCode = FaultCode.CUSTOM, customFaultCode="{http://in28minutes.com/courses}001_COURSE_NOT_FOUND")
+
+
+
+
+
+
+
+
