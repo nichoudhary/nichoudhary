@@ -1,0 +1,50 @@
+//### Section - 5 | Step 03 Defining XML Request & Response
+XML Structure
+Get CourseDetailsRequest -> GetCourseDetailsResponse
+
+input -> id -> 123
+output ->
+
+In XML, we need to define namespace as well so that the structure will remain unique to my application and it won't
+clash.
+
+For eg, we say id fields can only have numbers, if someone puts ABC then it should be treated invalid. If someone sends
+us a response back with <name1> annotation instead of <name>, then we want to call it invalid. How do we say that we don't
+support XML structures like this? So, for that we have something called XSD (XML Schema Definition).
+
+//#### Section - 5 | Step 04 Defining XSD for Request - GetCourseDetailsRequest
+XSD is something which will help us validate whether our requests/response are fine or not. XML Schema is typically used
+to define how an XML should look like.
+The target namespace indicated the namespace that should be used by the XML to be created. tns also stands for target
+namespace which is a shortcut.
+
+To tie the xml request/response to xsd we need to declare something called xml schema location in the XML request/response.
+xsi:schemaLocation="{namespace} {location}"
+Also define xsi:
+xmlns:xsi="http://...."
+
+what we have defined until now is a simple xsd. We can use this xsd in future to check if the requests which are coming
+from the external systems are valid or not. Another advantage, xsd can be included in the WSDL that can be shared with the
+customers who can use that XSD to understand and create request / response structures.
+
+///#### Section-5 | Step 05 Defining XSD for Response - GetCourseDetailsResponse
+
+///#### Section-5 | Step 06 More about XML Schema Definition (XSD) and implementing XSD best practice
+https://edutechwiki.unige.ch/en/XML_Schema_tutorial_-_Basics
+
+Right now, the schema (<schema xmlns="http://www.w3.org/2001/XMLSchema") is using the default namespace which
+is not a good practice. So, we would want to give it a prefix xs. So, now we would have to use this xs everywhere.
+<xs:schema xmlns="http://www.w3.org/2001/XMLSchema" ..
+<xs:element ...
+<xs:complexType ..
+
+///#### Section-5 | Step 07 Intro to Java API for XML binding (JAXB) and Configuring JAXB 2
+As the XSDs are defined, so now, we would want to be able to map our Java objects to be able to generate the XML which
+is defined in the XSD. We would get the input in terms of SOAP. We would want to be able to convert it into Java. We
+should be able to convert the response from Java to the SOAP XML as well. We would use something called JAXB for doing that.
+So, what this JAXB would do is, it would take the XSD that we have created (CourseDetails) and it would create Java
+objects out of it. And these JAVA objects we will be using in our project to put values to.
+What we need to is, make this course-details.xsd available as a part of this project. Copying course-details.xsd into
+/src/main/resources. After doing this, to create the Java Objects out of this xsd i.e to create the JAXB binding kind of
+objects out of this xsd, we would need to configure something called JAXB Maven Plugin. So, in the pom.xml we will define
+a plugin.
