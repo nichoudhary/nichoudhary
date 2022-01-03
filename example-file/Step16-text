@@ -1,0 +1,12 @@
+//### Section - 5 | Step 16: Improving the DeleteCourseDetailsRequest - Using an Enum for the Status
+
+In Step 15, we saw that the deleteCourseDetail endpoint was returning 1/0 for success/failure. This is not a good practice
+and it is also very difficult for clients to understand. Therefore we will use Enum for status.
+
+
+
+
+
+
+
+

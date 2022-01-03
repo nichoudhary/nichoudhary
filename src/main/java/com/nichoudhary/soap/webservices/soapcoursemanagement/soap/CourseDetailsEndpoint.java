@@ -1,6 +1,13 @@
 package com.nichoudhary.soap.webservices.soapcoursemanagement.soap;
 
-import com.in28minutes.courses.*;
+import com.in28minutes.courses.CourseDetails;
+import com.in28minutes.courses.DeleteCourseDetailsRequest;
+import com.in28minutes.courses.DeleteCourseDetailsResponse;
+import com.in28minutes.courses.GetAllCourseDetailsRequest;
+import com.in28minutes.courses.GetAllCourseDetailsResponse;
+import com.in28minutes.courses.GetCourseDetailsRequest;
+import com.in28minutes.courses.GetCourseDetailsResponse;
+import com.nichoudhary.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService.Status;
 import com.nichoudhary.soap.webservices.soapcoursemanagement.soap.bean.Course;
 import com.nichoudhary.soap.webservices.soapcoursemanagement.soap.service.CourseDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +51,16 @@ public class CourseDetailsEndpoint {
     @ResponsePayload
     public DeleteCourseDetailsResponse deleteCourseDetailsRequest(@RequestPayload DeleteCourseDetailsRequest request) {
 
-        int status = service.deleteById(request.getId());
+        Status status = service.deleteById(request.getId());
         DeleteCourseDetailsResponse response = new DeleteCourseDetailsResponse();
-        response.setStatus(status);
+        response.setStatus(mapStatus(status));
         return response;
+    }
+
+    private com.in28minutes.courses.Status mapStatus(Status status) {
+        if(status == Status.FAILURE)
+            return com.in28minutes.courses.Status.FAILURE;
+        return com.in28minutes.courses.Status.SUCCESS;
     }
 
     private GetAllCourseDetailsResponse mapAllCourseDetails(List<Course> courses) {
