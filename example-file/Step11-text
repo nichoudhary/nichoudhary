@@ -1,0 +1,17 @@
+//### Section - 5 | Step 11: Using Wizdler to execute Soap Requests
+
+Wizdler is one of a popular chrome plugin to execute SOAP requests as an alternative to SOAP-UI. You can download
+this from chrome OR you can use POSTMAN as well.
+And then hit - http://localhost:8080/ws/courses.wsdl to get the view of the WSDL
+
+To execute a SOAP request, if you have configured a Wizdler plugin then in chrome browser as soon as you hit the
+above url and then when you hover over the wizdler icon you'll see the name of the service and the name of the
+operations as well
+
+SAMPLE LOOK
+        CoursePortService
+            CoursePortSoap11
+                GetCourseDetails    ---// this is the name of the operation
+
+And when you click on the operation GetCourseDetails, it will create a sample request for you in the correct
+structure. And when you enter the values in the request structure and click "GO", it will give you the response.
