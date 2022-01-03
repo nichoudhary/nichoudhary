@@ -1,0 +1,21 @@
+//### Section - 5 | Step 08: Configuring-an-endpoint-for-GetCourseDetailsRequest
+
+To tell Spring Framework that CourseDetailsEnpoint is actually an Endpoint, we provide @Endpoint annotation at the
+beginning of the class.
+
+The XSD supports the request of a namespace of in28minutes.com/courses and the type (name) GetCourseDetailsRequest. So,
+if the request comes with the above namespace and name because if it gets a GetCourseDetailsRequest then only this
+processCourseDetailsMethod should be called so that it can take it and put in the request for processing. So for that we
+need to tell Spring to process with this namespace and name, we do that by using another annotation
+@PayloadRoot(namespace="", localPart="") // localPart is the name (type).
+
+One more thing that this processCourseDetailsMethod needs to do is it would need to take this XML and map it to
+GetCourseDetailsRequest Java Class. So, on the request side it needs to take this and convert it into a JAVA object. We
+need to tell Spring web services to that. That's done by adding another annotation @RequestPayload and vice-versa to convert
+Java Object back to response we would use @ResponsePayload
+
+// @Endpoint
+// @PayloadRoot(namespace="", localPart="")
+// @RequestPayload
+// @ResponsePayload
+
