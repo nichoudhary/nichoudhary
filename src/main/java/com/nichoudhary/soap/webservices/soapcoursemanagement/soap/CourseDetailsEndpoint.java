@@ -27,13 +27,17 @@ public class CourseDetailsEndpoint {
     @PayloadRoot(namespace = "http://in28minutes.com/courses", localPart = "GetCourseDetailsRequest")
     @ResponsePayload
     public GetCourseDetailsResponse processCourseDetailsRequest(@RequestPayload GetCourseDetailsRequest request) {
-        GetCourseDetailsResponse response = new GetCourseDetailsResponse();
+
         Course course = service.findById(request.getId());
+        return mapCourse(course);
+    }
+
+    private GetCourseDetailsResponse mapCourse(Course course) {
+        GetCourseDetailsResponse response = new GetCourseDetailsResponse();
         CourseDetails courseDetails =  new CourseDetails();
         courseDetails.setId(course.getId());
         courseDetails.setName(course.getName());
         courseDetails.setDescription(course.getDescription());
-
         response.setCourseDetails(courseDetails);
         return response;
     }

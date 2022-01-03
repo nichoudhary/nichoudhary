@@ -13,6 +13,7 @@ to talk to a service. So, we will create CourseDetailsService and will autowire 
 Initially, we will create them in memory. We will create a static array list of course and hold them in memory.
 Now after making the changes, go ahead and start the application and launch the WSDL.
 
-
+Now that we have a lot of logic in the CourseDetailsEndpoint, we need to refactor the code. The ideal way of creating a reponse
+is by using a mapper. So, we will be creating a mapCourse method which will map the details of the response.
 
 
