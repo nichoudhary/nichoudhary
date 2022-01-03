@@ -48,3 +48,7 @@ What we need to is, make this course-details.xsd available as a part of this pro
 /src/main/resources. After doing this, to create the Java Objects out of this xsd i.e to create the JAXB binding kind of
 objects out of this xsd, we would need to configure something called JAXB Maven Plugin. So, in the pom.xml we will define
 a plugin.
+
+Also, one of the important things that JAXB Maven plugin does is, it clears out the JAVA source folder, so if we say
+source main java as the java folder then it will make this folder empty. What might happen is all the code which is present
+in here might disappear. Hence in pom.xml -> plugin section we will also set clear folder = false.
