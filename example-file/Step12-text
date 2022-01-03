@@ -1,0 +1,19 @@
+//### Section - 5 | Step 12: Implementing a service - Course Details Service - backend with in memo
+
+In the last few steps, we created an endpoint with the hard-coded logic which is not a good practice. So, we are going to
+fix it here in this step.
+
+First we will create a Course Java class/object and will fetch it using a service. I would want this course details endpoint
+to talk to a service. So, we will create CourseDetailsService and will autowire it in CourseDetailsEndpoint.
+    // course details for single course - Course findById(int id)
+    // course details for all courses - List<Course> findAll()
+    // delete course - void deleteById(int id)
+    // update course - void updateById(int id)
+
+Initially, we will create them in memory. We will create a static array list of course and hold them in memory.
+Now after making the changes, go ahead and start the application and launch the WSDL.
+
+Now that we have a lot of logic in the CourseDetailsEndpoint, we need to refactor the code. The ideal way of creating a reponse
+is by using a mapper. So, we will be creating a mapCourse method which will map the details of the response.
+
+
