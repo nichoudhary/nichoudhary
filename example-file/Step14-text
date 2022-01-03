@@ -1,0 +1,26 @@
+//### Section - 5 | Step 15: Introduction to different parts of WSDL
+
+The wsdl is available at localhost:8080/ws/courses.wsdl and if you provide this wsdl then they'll know about every detail
+on how to call your web service. The common structure of wsdl contains message, portType, binding and service. We can see
+the schema in the WSDL, request/response structure.
+
+In the types we are defining the element and in the message we are saying that this is something that can be a request or
+a response for one of the operations. The only thing that can be used as request/response element are whatever is mapped as
+messages. Once the above are defined, the request/response is mapped to operations using portType. The port type defines all
+the different operations and in the operation we map what is the request and what is the response. Port Type is like an
+interface as we are defining all the different operations i.e. this web service offer these use-cases/services.
+
+And the binding defines the implementation. How do we really call it? Here the important thing we define are the style and
+transport. The transport defines that the service call happens over http. Out of the different styles
+(Remote call procedure [RPC] and document), we are using document. Document is most frequently used style of SOAP binding.
+So, binding defines how are going to expose our operations.
+
+Last one is service, How are the clients going to use this service? We are saying SOAP address that this is the address at
+which the service is available (http://localhost:8080/ws).
+
+
+
+
+
+
+
