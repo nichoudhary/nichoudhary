@@ -1,0 +1,27 @@
+//### Section - 5 | Step 09: Spring Web Services Configuration - Message Dispatcher Servlet
+
+We would want to initialize Spring Web Services and configure a couple of things. Create a configuration file WebServiceConfig
+First thing we need to tell that this is a Spring configuration file (by using @Configuration annotation) and also we would
+want to enable Spring web services (by using @EnableWs annotation). And now, with these annotations, this project is now a
+spring web services project.
+
+We also need to do a lot more things, first thing we would want to configure is something called a Message Dispatcher Servlet.
+If you've worked with Spring MVC, you'd be familiar with the concept of dispatcher servlet. Dispatcher Servlet is the front
+controller. Any request coming to spring MVC will be first processed by a dispatcher servlet and then it identifies which
+controller would handle the request. Similar to that, we would want to create a Message Dispatcher Servet.
+
+So, a Message Dispatcher Servlet is a servlet for simplified dispatching of web service messages. Typically, we have dispatcher
+servlet for web applications, RESTful web services and things like that. The Message Dispatcher Servlet on the other hand is
+used for identifying endpoints and things like that. Endpoints and things like that specific to SOAP Web Services. So, a
+message dispatcher servlet is more a servlet which handles all the requests, all the SOAP requests and be able to identify
+the endpoints etc.
+
+When we are creating a message dispatcher servlet we need to pass it a couple of inputs. First one is the
+1. Application Context
+2. url which we want to expose off
+We would have to define a bean to be able to do this. And we want to map this message dispatcher servlet to the url (which
+we will expose). So, we want to create a servlet registration. Hence, the return type of this specific bean, the bean which
+we are configuring is something called servlet registration (ServletRegistrationBean). This servlet registration bean helps
+us to map servlet to a uri.
+
+
