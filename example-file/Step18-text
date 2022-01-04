@@ -1,0 +1,64 @@
+//### Section - 5 | Step 18: Step18 Implementing Security for SOAP Web services with WS Security
+
+In this step, we will implement simple security with WS security. WS security is a set of specifications which actually try to
+provide security around your SOAP based web services. One of the things is WS security is transport independent. Whether you
+are using HTTP or MQ, it doesn't really matter. WS security can provide security irrespective of the transport you are making
+use of. WS security provides specifications for authentication based on passwords, based on digital signatures and when you are
+using certificates. XWSS is one of the important implementations of WS Security. It stands for XML and Web service security.
+
+In this step, we'll use XWSS to implement a simple security policy. We'll use something called XWS security interceptor and we'll
+add a user id and password and make sure that only those requests with that user id and password are able to access our service.
+One of the first things that we would need to do is to add the security related dependencies.
+
+Once we have added the dependencies, we'll have to enhance our web service config as our web service config right now doesn't have
+configuration for security. We need to configure something called XWS security interceptor. What does this interceptor do?
+This interceptor intercepts all the request that are coming in. So, it intercepts all the SOAP web services requests that are coming
+in to our web service and it checks whether it's secure or not. For eg. it checks the user id and password. Once we create the XWS
+security interceptor, we would need to add it to the list of interceptors. Spring web services provides a mechanism where you can
+add to the existing list of interceptor. So we need to add this interceptor which we created to the list of interceptors which are
+present.
+
+As part of defining the security interceptor, we would need to define two things. One we'll define a callback handler. So, what
+should the security interceptor do when it intercepts the request? So, a request is coming in, security interceptor intercepts it.
+What should it do? -> It should check the user id and password. whether they are valid or not. For that only we need to create a
+callback handler. In this example, we would be using a simple password validation callback handler. That's one of the handlers
+which is provided by Spring web services security. And other thing we would need to provide to the security interceptor is
+something called the security policy. We'll create a security policy.xml to define the security policy and configure it in our
+interceptor. That's basically all we'd need to enable security on our web service.
+
+Once we have the security interceptor, we need to add it to be processed by the list of spring webservices interceptors. The way we
+do that is by extending WebServiceConfig class to WsConfigureAdapter and add our interceptors to one of the methods which is
+already there.
+
+WsConfigureAdapter is actually a default implementation. It has empty methods allowing subclasses to override the methods they are
+interested in. What we want to do is we would want to override the add interceptors method.
+
+
+Let's get started...
+
+SOAP request structure with header in the envelope
+
+<Envelope xmlns="http://schemas.xmlsoap.org/soap/envelope/">
+	<Header>
+		<wsse:Security
+			xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+			mustUnderstand="1">
+			<wsse:UsernameToken>
+				<wsse:Username>user</wsse:Username>
+				<wsse:Password>password</wsse:Password>
+			</wsse:UsernameToken>
+		</wsse:Security>
+	</Header>
+	<Body>
+		<GetCourseDetailsRequest xmlns="http://in28minutes.com/courses">
+			<id>1</id>
+		</GetCourseDetailsRequest>
+	</Body>
+</Envelope>
+
+
+
+
+
+
+
